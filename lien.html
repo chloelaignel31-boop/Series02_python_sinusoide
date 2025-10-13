@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Mon README GitHub</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <h1>README du repo GitHub</h1>
+  <div id="content">Chargement…</div>
+
+  <script>
+    (async function() {
+      // URL vers le fichier raw sur GitHub
+      const url = "https://raw.githubusercontent.com/chloelaignel31-boop/Series02_python_sinusoide/main/README.md";
+      const contentEl = document.getElementById("content");
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
+        const md = await res.text();
+        contentEl.innerHTML = marked.parse(md);
+      } catch (err) {
+        contentEl.innerHTML = `<p style="color:red">Erreur : ${err.message}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>
+
